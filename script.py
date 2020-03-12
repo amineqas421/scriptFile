@@ -40,34 +40,31 @@ with smart_run(session):
     session.set_relationship_bounds(enabled=True,
                                     potency_ratio=1.34,
                                     delimit_by_numbers=True,
-                                    max_followers=300,
-                                    max_following=200,
-                                    min_followers=50,
+                                    max_followers=8500,
+                                    max_following=4490,
+                                    min_followers=100,
                                     min_following=56,
                                     min_posts=10,
-                                    max_posts=50)
-    session.set_action_delays(
-        enabled=True, like=2, randomize=True, random_range_from=70, random_range_to=140)
-    session.comment_by_locations(list_locations, amount=100)
-    session.follow_by_locations(list_locations, amount=100)
-    session.follow_user_following(
-        accounts, amount=10, randomize=False, sleep_delay=90)
+                                    max_posts=1000)
+    session.set_action_delays(enabled=True, like=5.2, randomize=True, random_range_from=70, random_range_to=140)
+    #session.comment_by_locations(list_locations, amount=100)
+    #ßsession.follow_by_locations(list_locations, amount=100)
+    session.follow_user_following(accounts,amount=10, randomize=False)
 
-    session.set_dont_include(friends)
+    #session.set_dont_include(friends)
     session.set_dont_like(dont_likes)
     session.set_ignore_if_contains(ignore_list)
 
-    session.set_user_interact(amount=2, randomize=True, percentage=60)
-    session.set_do_follow(enabled=True, percentage=40)
-    session.set_do_like(enabled=True, percentage=80)
+    session.set_user_interact(amount=5, randomize=True, percentage=50, media='Photo')
+    #session.set_do_follow(enabled=True, percentage=40)
+    #session.set_do_like(enabled=True, percentage=80)
 
     # activity
     session.like_by_tags(random.sample(like_tag_list, 3),
                          amount=random.randint(50, 100), interact=True)
     session.follow_by_tags(like_tag_list, amount=10)
     session.set_delimit_liking(enabled=True, max_likes=500, min_likes=20)
-    session.set_delimit_commenting(
-        enabled=True, max_comments=32, min_comments=0)
+    session.set_delimit_commenting(enabled=True, max_comments=32, min_comments=0)
 
     session.unfollow_users(amount=random.randint(75, 150),
                            InstapyFollowed=(True, "all"), style="FIFO",
